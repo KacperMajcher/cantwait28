@@ -23,7 +23,8 @@ class AddCubit extends Cubit<AddState> {
           'release_date': releaseDate,
         },
       );
-      emit(const AddState(saved: true)); //emitujemy stste, ze zapisanie się powiodło    } catch (error) {
+      emit(const AddState(saved: true)); //emitujemy stste, ze zapisanie się powiodło   
+       } catch (error) {
       emit(AddState(errorMessage: error.toString())); //jeśli w tym awaicie wystąpiłby jakiś błąd, try catch od razu przechodzi do catch i emituje state o błędzie
     }
   }

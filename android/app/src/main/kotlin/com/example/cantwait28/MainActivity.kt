@@ -1,4 +1,4 @@
-package com.example.cantwait212
+package com.kacpermajcher.cantwait212
 
 import io.flutter.embedding.android.FlutterActivity
 
