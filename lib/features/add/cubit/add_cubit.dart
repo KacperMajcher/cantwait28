@@ -11,9 +11,9 @@ class AddCubit extends Cubit<AddState> {
   Future<void> add(
     /*Jeżeli zostanie wywołana metoda add, która musi podać tytuł, link go grafiki i date 
      dodajemy te elemrnty odwołując się do firebasea*/
-    String title,
-    String imageURL,
-    DateTime releaseDate,
+    final String title,
+    final String imageURL,
+    final DateTime releaseDate,
   ) async {
     try {
       await FirebaseFirestore.instance.collection('items').add(

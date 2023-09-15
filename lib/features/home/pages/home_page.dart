@@ -65,7 +65,7 @@ class _HomePageBody extends StatelessWidget {
       child: BlocBuilder<HomeCubit, HomeState>(
         builder: (context, state) {
           final itemModels = state.items;
-          if (itemModels.isNotEmpty) {
+          if (itemModels.isEmpty) {
             return const SizedBox.shrink();
           }
           return ListView(
