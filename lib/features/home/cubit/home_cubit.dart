@@ -2,30 +2,20 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:cantwait212/models/item_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cantwait212/repositories/item_repository.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(const HomeState());
+  HomeCubit(this._itemRepository) : super(const HomeState());
 
+  final ItemsRepository _itemRepository;
   StreamSubscription? _streamSubscription;
 
   Future<void> start() async {
-    _streamSubscription = FirebaseFirestore.instance
-        .collection('items')
-        .orderBy('release_date')
-        .snapshots()
-        .listen(
+    _streamSubscription = _itemRepository.getItemsStream().listen(
       (items) {
-        final itemModels = items.docs.map((doc) {
-          return ItemModel(
-              id: doc.id,
-              title: doc['title'],
-              imageURL: doc['image_url'],
-              releaseDate: (doc['release_date'] as Timestamp).toDate(),
-              );
-        }).toList();
+        final itemModels = items;
         emit(HomeState(items: itemModels));
       },
     )..onError(
@@ -42,10 +32,7 @@ tutaj działa w firebase, tam we flutterze */
 
   Future<void> remove({required String documentID}) async {
     try {
-      await FirebaseFirestore.instance
-          .collection('items')
-          .doc(documentID)
-          .delete();
+      await _itemRepository.delete(id: documentID);
     } catch (error) {
       emit(
         const HomeState(

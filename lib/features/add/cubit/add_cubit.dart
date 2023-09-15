@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cantwait212/repositories/item_repository.dart';
 
 part 'add_state.dart';
 
 class AddCubit extends Cubit<AddState> {
-  AddCubit() : super(const AddState());
+  AddCubit(this._itemRepository) : super(const AddState());
+
+  final ItemsRepository _itemRepository;
 
   Future<void> add(
     /*Jeżeli zostanie wywołana metoda add, która musi podać tytuł, link go grafiki i date 
@@ -16,13 +18,7 @@ class AddCubit extends Cubit<AddState> {
     final DateTime releaseDate,
   ) async {
     try {
-      await FirebaseFirestore.instance.collection('items').add(
-        {
-          'title': title,
-          'image_url': imageURL,
-          'release_date': releaseDate,
-        },
-      );
+      await _itemRepository.add(title, imageURL, releaseDate);
       emit(const AddState(
           saved: true)); //emitujemy stste, ze zapisanie się powiodło
     } catch (error) {
