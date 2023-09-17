@@ -1,5 +1,5 @@
 import 'package:cantwait212/features/add/page/add_page.dart';
-import 'package:cantwait212/features/details/pages/detail_page.dart';
+import 'package:cantwait212/features/details/pages/details_page.dart';
 import 'package:cantwait212/features/home/cubit/home_cubit.dart';
 import 'package:cantwait212/models/item_model.dart';
 import 'package:cantwait212/repositories/item_repository.dart';
@@ -187,7 +187,7 @@ class _ListViewItem extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            (itemModel.releaseDate).toString(),
+                            (itemModel.releaseDateFormatted()),
                           ),
                         ],
                       ),
