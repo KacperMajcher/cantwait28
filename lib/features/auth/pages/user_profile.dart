@@ -9,7 +9,7 @@ class UserProfile extends StatelessWidget {
     return ProfileScreen(
       actions: [
         SignedOutAction((context) {
-          Navigator.of(context).pushReplacementNamed('/sign-in');
+          Navigator.of(context).pop();
         })
       ],
       providerConfigs: const [
