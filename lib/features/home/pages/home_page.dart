@@ -1,4 +1,5 @@
 import 'package:cantwait212/features/add/page/add_page.dart';
+import 'package:cantwait212/features/auth/pages/user_profile.dart';
 import 'package:cantwait212/features/details/pages/details_page.dart';
 import 'package:cantwait212/features/home/cubit/home_cubit.dart';
 import 'package:cantwait212/models/item_model.dart';
@@ -19,6 +20,15 @@ poniżej _HomePageBody i FloatingActionButton będący ikonką dodawania.
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const UserProfile()));
+            },
+            icon: const Icon(Icons.person),
+          )
+        ],
         title: const Text("Can't Wait 🤩"), // ("") bo jest apostrof w środku
       ),
       body:
