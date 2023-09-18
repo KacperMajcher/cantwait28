@@ -13,7 +13,7 @@ class UserProfile extends StatelessWidget {
         })
       ],
       providerConfigs: const [
-        EmailProviderConfiguration(), //fmfn
+        EmailProviderConfiguration(),
         GoogleProviderConfiguration(
           clientId: '...',
         ),
